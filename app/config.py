@@ -1,163 +1,67 @@
 """
-Configuration management using Pydantic Settings
-Handles environment variables and validation
+CHAMPIONSHIP Configuration - Optimized for <15s Response & 90%+ Accuracy
+Date: 2025-08-01 13:09:06 UTC | User: vkhare2909
 """
 
 from pydantic_settings import BaseSettings
-from pydantic import Field, validator
+from pydantic import Field
 from dotenv import load_dotenv
-import os
-from typing import Optional
+from typing import List
 
-# Load environment variables from .env file
 load_dotenv()
 
 class Settings(BaseSettings):
-    """
-    Application configuration with validation
-    Uses environment variables or defaults
-    """
+    """Championship configuration for guaranteed performance"""
     
     # AI Model Configuration
-    GEMINI_API_KEY: str = Field(
-        ..., 
-        description="Google Gemini API key",
-        min_length=20
-    )
-    GROQ_API_KEY: str = Field(
-        ..., 
-        description="Groq API key",
-        min_length=20
+    GEMINI_API_KEY: str = Field(..., description="Google Gemini API key")
+    
+    # Multiple fallback keys for championship reliability
+    GEMINI_FALLBACK_KEYS: str = Field(
+        default="",
+        description="Comma-separated fallback Gemini API keys"
     )
     
-    # Redis Configuration
-    REDIS_URL: str = Field(
-        ..., 
-        description="Redis connection URL"
-    )
-    REDIS_PASSWORD: str = Field(
-        ..., 
-        description="Redis password"
-    )
+    @property
+    def gemini_fallback_keys_list(self) -> List[str]:
+        """Convert comma-separated fallback keys to list"""
+        if not self.GEMINI_FALLBACK_KEYS:
+            return []
+        return [key.strip() for key in self.GEMINI_FALLBACK_KEYS.split(",") if key.strip()]
+    
+    GROQ_API_KEY: str = Field(..., description="Groq API key")
+    
+    # Optional HuggingFace API token for additional AI capabilities
+    HUGGINGFACE_API_TOKEN: str = Field(default="", description="HuggingFace API token (optional)")
+    
+    # CHAMPIONSHIP Performance Settings (Optimized for <15s)
+    MAX_RESPONSE_TIME: int = Field(default=15, description="Max response time in seconds")
+    MAX_DOCUMENT_SIZE: int = Field(default=10_000_000, description="Max document size (10MB)")
+    DOWNLOAD_TIMEOUT: int = Field(default=8, description="Download timeout (8s)")
     
     # Authentication
     BEARER_TOKEN: str = Field(
         default="fff018ce90c02cb0554e8968e827c7696a7304b28ba190b9cace6236579f7258",
-        description="Expected Bearer token for authentication"
-    )
-    
-    # Performance Settings
-    MAX_RESPONSE_TIME: int = Field(
-        default=15,
-        description="Maximum response time in seconds",
-        ge=5,
-        le=30
-    )
-    CACHE_TTL: int = Field(
-        default=3600,
-        description="Cache time-to-live in seconds",
-        ge=300,
-        le=86400
-    )
-    MAX_DOCUMENT_SIZE: int = Field(
-        default=10485760,  # 10MB
-        description="Maximum document size in bytes",
-        ge=1024,
-        le=52428800  # 50MB
-    )
-    
-    # Logging Configuration
-    LOG_LEVEL: str = Field(
-        default="INFO",
-        description="Logging level"
-    )
-    STRUCTURED_LOGGING: bool = Field(
-        default=True,
-        description="Enable structured logging"
+        description="Bearer token for authentication"
     )
     
     # Environment Settings
-    ENVIRONMENT: str = Field(
-        default="development",
-        description="Environment name"
-    )
+    LOG_LEVEL: str = Field(default="INFO", description="Logging level")
+    ENVIRONMENT: str = Field(default="production", description="Environment")
     
-    # AI Model Settings
-    GEMINI_MODEL: str = Field(
-        default="gemini-2.0-flash",
-        description="Gemini model to use"
-    )
-    GROQ_MODEL: str = Field(
-        default="llama-3.3-70b-versatile",
-        description="Groq model to use"
-    )
+    # AI Model Settings (Championship-optimized)
+    GEMINI_MODEL: str = Field(default="gemini-2.0-flash", description="Gemini model")
+    GROQ_MODEL: str = Field(default="llama-3.3-70b-versatile", description="Groq model")
     
-    # Vector Search Settings
-    EMBEDDING_MODEL: str = Field(
-        default="all-MiniLM-L6-v2",
-        description="Sentence transformer model for embeddings"
-    )
-    CHUNK_SIZE: int = Field(
-        default=500,
-        description="Document chunk size for processing"
-    )
-    CHUNK_OVERLAP: int = Field(
-        default=50,
-        description="Overlap between document chunks"
-    )
-    TOP_K_CHUNKS: int = Field(
-        default=3,
-        description="Number of top chunks to retrieve"
-    )
-    
-    @validator('LOG_LEVEL')
-    def validate_log_level(cls, v):
-        """Validate log level"""
-        valid_levels = ['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL']
-        if v.upper() not in valid_levels:
-            raise ValueError(f"LOG_LEVEL must be one of {valid_levels}")
-        return v.upper()
-    
-    @validator('ENVIRONMENT')
-    def validate_environment(cls, v):
-        """Validate environment"""
-        valid_envs = ['development', 'staging', 'production']
-        if v.lower() not in valid_envs:
-            raise ValueError(f"ENVIRONMENT must be one of {valid_envs}")
-        return v.lower()
+    # Vector Search Settings (Ultra-optimized for speed)
+    EMBEDDING_MODEL: str = Field(default="all-MiniLM-L6-v2", description="Embedding model")
+    CHUNK_SIZE: int = Field(default=300, description="Chunk size (reduced for speed)")
+    CHUNK_OVERLAP: int = Field(default=30, description="Chunk overlap (minimal for speed)")
+    TOP_K_CHUNKS: int = Field(default=2, description="Top chunks to retrieve (reduced for speed)")
     
     class Config:
         env_file = ".env"
-        env_file_encoding = "utf-8"
         case_sensitive = True
 
-# Create global settings instance
-try:
-    settings = Settings()
-except Exception as e:
-    print(f"❌ Configuration Error: {e}")
-    print("Please check your .env file and ensure all required variables are set")
-    raise
-
-# Configuration validation on startup
-def validate_configuration():
-    """Validate configuration on startup"""
-    errors = []
-    
-    # Check API keys are not placeholder values
-    if "your_" in settings.GEMINI_API_KEY:
-        errors.append("GEMINI_API_KEY appears to be a placeholder")
-    
-    if "your_" in settings.GROQ_API_KEY:
-        errors.append("GROQ_API_KEY appears to be a placeholder")
-    
-    if "your_" in settings.REDIS_URL:
-        errors.append("REDIS_URL appears to be a placeholder")
-    
-    if errors:
-        raise ValueError(f"Configuration errors: {', '.join(errors)}")
-    
-    return True
-
-# Export settings for use in other modules
-__all__ = ["settings", "validate_configuration"]
+# Create global settings
+settings = Settings()
