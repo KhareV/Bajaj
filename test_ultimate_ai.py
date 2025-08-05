@@ -10,14 +10,14 @@ import os
 # Add the current directory to Python path
 sys.path.insert(0, os.path.dirname(__file__))
 
-from app.models.ai_processor import ChampionshipAIProcessor
+from app.models.ai_processor import EnhancedAIProcessor
 
 async def test_ultimate_ai():
     """Test the ultimate AI processor"""
     print("🏆 Testing Ultimate Championship AI Processor...")
     
     # Initialize the processor
-    ai_processor = ChampionshipAIProcessor()
+    ai_processor = EnhancedAIProcessor()
     
     # Test document content (sample)
     test_document = """

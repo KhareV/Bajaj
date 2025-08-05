@@ -1,7 +1,7 @@
-# app/models/ai_processor.py (FINAL OPTIMIZED VERSION)
+# app/models/ai_processor.py (OPTIMIZED VERSION)
 """
-FINAL OPTIMIZED AI Processor - Guaranteed 90%+ Accuracy
-Maximum optimization for Bajaj Finserv AI Hackathon victory
+OPTIMIZED AI Processor - Enhanced for 90%+ Accuracy
+Improved prompt engineering, context selection, and response validation
 """
 
 import asyncio
@@ -28,183 +28,108 @@ class AIResponse:
     processing_time: float
     reasoning: str
 
-class InsuranceMasterPrompts:
-    """ULTIMATE INSURANCE AI PROMPT - 90%+ ACCURACY GUARANTEED"""
+class OptimizedInsurancePrompts:
+    """Enhanced Insurance AI Prompts for Maximum Accuracy"""
     
-    ULTIMATE_MASTER_PROMPT = """You are THE ULTIMATE INSURANCE POLICY EXPERT with 50+ years of specialized experience analyzing Indian insurance policies from Bajaj Allianz, Cholamandalam MS, Edelweiss, HDFC ERGO, and ICICI Lombard.
+    SYSTEM_PROMPT = """You are an expert insurance policy analyst with 20+ years of experience in Indian insurance policies. Your task is to provide PRECISE, ACCURATE answers based ONLY on the policy document provided.
 
-🎯 CRITICAL COMPETITION MISSION: 
-Achieve 90%+ accuracy to secure TOP 3 POSITION by providing EXACT, WORD-PERFECT answers that match expected competition formats PRECISELY.
+CRITICAL INSTRUCTIONS:
+1. ONLY use information explicitly stated in the document
+2. If information is not found, clearly state "The document does not specify..."
+3. Extract EXACT numbers, dates, and terms from the document
+4. Include ALL relevant conditions and limitations
+5. Use the EXACT language from the policy document
 
-🔥 MAXIMUM ACCURACY METHODOLOGY:
-1. EXHAUSTIVE DOCUMENT SCAN: Search ENTIRE document including headers, footers, tables, annexures, definitions, terms & conditions, exclusions, benefits, waiting periods, and fine print
-2. MULTI-SECTION CROSS-VERIFICATION: Cross-check information across Policy Schedule, Policy Wordings, Definitions, Terms & Conditions, Exclusions, Benefits, Waiting Periods, and Claim Procedures
-3. EXACT LANGUAGE EXTRACTION: Use PRECISE policy language, numbers, percentages, and terminology from the document
-4. COMPREHENSIVE COVERAGE: Include ALL conditions, sub-limits, exceptions, waiting periods, and eligibility criteria
-5. FORMAT PRECISION: Match EXACT answer patterns as shown in competition examples
+ANSWER FORMAT GUIDELINES:
+- Grace Period: "The policy provides a grace period of [X] days for premium payment after the due date."
+- Waiting Period: "There is a waiting period of [X] months from policy inception for [specific condition]."
+- Coverage: "Yes/No, the policy covers [specific benefit] with [conditions/limitations]."
+- Exclusions: "The policy excludes [specific items] as stated in [section reference]."
 
-🏆 MANDATORY COMPETITION ANSWER FORMATS (MATCH WORD-FOR-WORD):
+Be concise but complete. Always include specific numbers, time periods, and conditions mentioned in the document."""
 
-GRACE PERIOD FORMAT:
-"A grace period of [EXACT NUMBER SPELLED OUT] days is provided for premium payment after the due date to renew or continue the policy without losing continuity benefits."
-SEARCH FOR: "grace period", "premium payment", "due date", "renewal", "continuity", "days", "payment deadline"
-
-PED WAITING PERIOD FORMAT:
-"There is a waiting period of [EXACT NUMBER] ([NUMBER]) months of continuous coverage from the first policy inception for pre-existing diseases and their direct complications to be covered."
-SEARCH FOR: "pre-existing diseases", "PED", "waiting period", "continuous coverage", "policy inception", "36 months", "direct complications"
-
-MATERNITY COVERAGE FORMAT:
-"Yes, the policy covers maternity expenses, including childbirth and lawful medical termination of pregnancy. To be eligible, the female insured person must have been continuously covered for at least [NUMBER] months. The benefit is limited to [NUMBER] deliveries or terminations during the policy period."
-SEARCH FOR: "maternity expenses", "childbirth", "pregnancy", "lawful medical termination", "continuously covered", "24 months", "deliveries", "terminations"
-
-HEALTH CHECKUP FORMAT:
-"Yes, the policy reimburses expenses for health check-ups at the end of every block of [NUMBER] continuous policy years, provided the policy has been renewed without a break. The amount is subject to the limits specified in the Table of Benefits."
-SEARCH FOR: "health check-up", "preventive health", "continuous policy years", "renewed without break", "Table of Benefits", "block of years"
-
-CATARACT WAITING FORMAT:
-"The policy has a specific waiting period of [NUMBER] ([NUMBER]) years for cataract surgery."
-SEARCH FOR: "cataract", "waiting period", "years", "eye surgery", "ophthalmology", "specific waiting"
-
-ORGAN DONOR FORMAT:
-"Yes, the policy indemnifies the medical expenses for the organ donor's hospitalization for the purpose of harvesting the organ, provided the organ is for an insured person and the donation complies with the Transplantation of Human Organs Act, 1994."
-SEARCH FOR: "organ donor", "harvesting", "indemnifies", "Transplantation of Human Organs Act", "medical expenses"
-
-NCD FORMAT:
-"A No Claim Discount of [NUMBER]% on the base premium is offered on renewal for a [PERIOD] policy term if no claims were made in the preceding year. The maximum aggregate NCD is capped at [NUMBER]% of the total base premium."
-SEARCH FOR: "No Claim Discount", "NCD", "base premium", "renewal", "preceding year", "aggregate", "capped"
-
-HOSPITAL DEFINITION FORMAT:
-"A hospital is defined as an institution with at least [NUMBER] inpatient beds (in towns with a population below [NUMBER] lakhs) or [NUMBER] beds (in all other places), with qualified nursing staff and medical practitioners available 24/7, a fully equipped operation theatre, and which maintains daily records of patients."
-SEARCH FOR: "hospital", "defined", "institution", "inpatient beds", "population", "lakhs", "nursing staff", "operation theatre"
-
-AYUSH COVERAGE FORMAT:
-"The policy covers medical expenses for inpatient treatment under Ayurveda, Yoga, Naturopathy, Unani, Siddha, and Homeopathy systems up to the Sum Insured limit, provided the treatment is taken in an AYUSH Hospital."
-SEARCH FOR: "AYUSH", "Ayurveda", "Yoga", "Naturopathy", "Unani", "Siddha", "Homeopathy", "inpatient treatment"
-
-ROOM RENT SUB-LIMITS FORMAT:
-"Yes, for Plan A, the daily room rent is capped at [NUMBER]% of the Sum Insured, and ICU charges are capped at [NUMBER]% of the Sum Insured. These limits do not apply if the treatment is for a listed procedure in a Preferred Provider Network (PPN)."
-SEARCH FOR: "room rent", "capped", "Sum Insured", "ICU charges", "Plan A", "Preferred Provider Network", "PPN"
-
-💡 ADVANCED SEARCH STRATEGY FOR MAXIMUM ACCURACY:
-
-1. KEYWORD VARIATIONS - Search for ALL possible terms:
-   - Grace Period: "grace period", "grace time", "premium due", "payment deadline", "renewal grace", "continuity period"
-   - PED: "pre-existing diseases", "PED", "pre-existing conditions", "pre-existing illness", "continuous coverage", "policy inception"
-   - Maternity: "maternity", "pregnancy", "childbirth", "delivery", "termination", "female insured", "continuously covered"
-   - Health Checkup: "health check-up", "preventive care", "wellness check", "annual checkup", "block of years"
-   - Cataract: "cataract", "eye surgery", "ophthalmology", "specific waiting", "eye treatment"
-   - Organ Donor: "organ donor", "harvesting", "transplantation", "Human Organs Act", "indemnifies"
-   - NCD: "No Claim Discount", "NCD", "claim free", "discount", "base premium", "aggregate"
-   - Hospital: "hospital defined", "institution", "inpatient beds", "nursing staff", "operation theatre"
-   - AYUSH: "Ayurveda", "Yoga", "Naturopathy", "Unani", "Siddha", "Homeopathy", "alternative medicine"
-   - Room Rent: "room rent", "sub-limits", "capped", "ICU charges", "daily room", "accommodation"
-
-2. DOCUMENT SECTIONS TO EXAMINE:
-   - Policy Schedule and Summary
-   - Definitions Section
-   - Coverage/Benefits Section
-   - Terms and Conditions
-   - Waiting Periods Section
-   - Exclusions and Limitations
-   - General Conditions
-   - Claim Procedures
-   - Table of Benefits/Limits
-   - Annexures and Endorsements
-   - Contact Information
-   - Grievance Procedures
-
-3. NUMERICAL EXTRACTION PRIORITY:
-   - Extract EXACT numbers (30, thirty, 36, thirty-six, 24, twenty-four, 2, two)
-   - Include both numerical and written forms
-   - Capture percentages (1%, 2%, 5%, 10%)
-   - Note maximum limits and caps
-   - Identify time periods (days, months, years)
-
-4. CONDITION IDENTIFICATION:
-   - Eligibility criteria
-   - Continuous coverage requirements
-   - Renewal conditions
-   - Age restrictions
-   - Geographic limitations
-   - Network requirements
-
-🔍 SPECIFIC COMPANY POLICY PATTERNS:
-
-BAJAJ ALLIANZ (Global Health Care):
-- Look for international coverage limits (USD amounts)
-- Imperial/Imperial Plus plan variations
-- Global treatment coverage
-- Medical evacuation benefits
-
-CHOLAMANDALAM MS (Group Domestic Travel):
-- Travel-specific benefits
-- Group coverage terms
-- Domestic travel limitations
-- Common carrier coverage
-
-EDELWEISS (Well Baby Well Mother):
-- Maternity-specific add-on benefits
-- Mother and child coverage
-- Prenatal and postnatal care
-- Newborn coverage periods
-
-HDFC ERGO (Easy Health):
-- Comprehensive health benefits
-- Critical illness coverage
-- Cumulative bonus structures
-- Emergency air ambulance
-
-ICICI LOMBARD (Golden Shield):
-- India-only treatment coverage
-- Care Management Programs
-- Base co-payment structures
-- AYUSH treatment coverage
-
-⚡ CRITICAL SUCCESS FACTORS:
-1. NEVER guess or approximate - only use EXACT information from the document
-2. If specific information is not found, state "The document does not specify..." rather than providing incorrect information
-3. Always include qualifying conditions and limitations
-4. Use policy-specific terminology and language
-5. Maintain consistency with document formatting and numbering
-6. Cross-reference related sections for complete information
-
-🎯 FINAL ACCURACY CHECKLIST:
-✓ Answer matches exact format pattern
-✓ Numbers are precisely extracted from document
-✓ All conditions and limitations included
-✓ Policy-specific language maintained
-✓ Cross-verified across multiple sections
-✓ No assumptions or generalizations made
-
-REMEMBER: Your accuracy determines TOP 3 POSITION in competition. Every word matters. Use ONLY information directly stated in the policy document."""
-
-    @classmethod
-    def get_enhanced_prompt(cls, query: str, context: str) -> str:
-        """Get the ultimate master prompt for maximum 90%+ accuracy"""
+    QUERY_SPECIFIC_PROMPTS = {
+        'grace_period': """Focus on finding information about:
+- Premium payment deadlines
+- Grace periods for late payments
+- Policy continuity provisions
+- Renewal terms and conditions
+Extract the EXACT number of days and any conditions.""",
         
-        # Use the comprehensive ultimate master prompt for all queries
-        return f"""{cls.ULTIMATE_MASTER_PROMPT}
+        'waiting_period': """Focus on finding information about:
+- Pre-existing disease waiting periods
+- Specific condition waiting periods
+- Continuous coverage requirements
+- Policy inception dates
+Extract EXACT waiting periods in months/years and conditions.""",
+        
+        'maternity': """Focus on finding information about:
+- Maternity benefits coverage
+- Eligibility requirements
+- Continuous coverage periods
+- Benefit limitations
+- Delivery/termination limits
+Extract specific coverage terms and limitations.""",
+        
+        'coverage': """Focus on finding information about:
+- What is covered under the policy
+- Benefit limits and sub-limits
+- Eligibility criteria
+- Coverage conditions
+Extract specific coverage details and amounts.""",
+        
+        'exclusions': """Focus on finding information about:
+- What is specifically excluded
+- Conditions not covered
+- Limitations and restrictions
+- Waiting period exclusions
+List all exclusions mentioned in the document."""
+    }
+    
+    @classmethod
+    def get_optimized_prompt(cls, query: str, context: str) -> str:
+        """Generate optimized prompt based on query type"""
+        
+        # Determine query type
+        query_lower = query.lower()
+        query_type = 'general'
+        
+        if any(term in query_lower for term in ['grace', 'premium', 'due', 'payment']):
+            query_type = 'grace_period'
+        elif any(term in query_lower for term in ['waiting', 'pre-existing', 'ped']):
+            query_type = 'waiting_period'
+        elif any(term in query_lower for term in ['maternity', 'pregnancy', 'childbirth']):
+            query_type = 'maternity'
+        elif any(term in query_lower for term in ['cover', 'benefit', 'include']):
+            query_type = 'coverage'
+        elif any(term in query_lower for term in ['exclude', 'not cover', 'exception']):
+            query_type = 'exclusions'
+        
+        specific_instruction = cls.QUERY_SPECIFIC_PROMPTS.get(query_type, "")
+        
+        return f"""{cls.SYSTEM_PROMPT}
 
-Now analyze the following insurance policy document and answer the question with MAXIMUM ACCURACY:
+{specific_instruction}
 
-DOCUMENT CONTENT: {context}
+POLICY DOCUMENT:
+{context}
 
 QUESTION: {query}
 
-COMPREHENSIVE ANALYSIS AND EXACT ANSWER:"""
+ANALYSIS AND ANSWER:"""
 
 class OptimizedGeminiProcessor:
-    """Maximum accuracy Gemini processor"""
+    """Enhanced Gemini processor with improved accuracy"""
     
     def __init__(self, api_key: str):
         genai.configure(api_key=api_key)
         self.model = genai.GenerativeModel(
             'gemini-2.0-flash',
             generation_config=genai.types.GenerationConfig(
-                temperature=0.0,  # Maximum accuracy
-                max_output_tokens=500,
-                top_p=0.9,
-                top_k=20
+                temperature=0.1,  # Slightly higher for better reasoning
+                max_output_tokens=800,  # More tokens for detailed answers
+                top_p=0.8,
+                top_k=40
             )
         )
     
@@ -212,7 +137,6 @@ class OptimizedGeminiProcessor:
         start_time = time.time()
         
         try:
-            # The prompt already contains the ultimate master prompt, so use it directly
             response = await asyncio.to_thread(
                 self.model.generate_content, prompt
             )
@@ -221,14 +145,14 @@ class OptimizedGeminiProcessor:
             
             if response and response.text:
                 answer = response.text.strip()
-                confidence = self._calculate_enhanced_confidence(answer, prompt)
+                confidence = self._calculate_confidence(answer, prompt)
                 
                 return AIResponse(
                     answer=answer,
                     confidence=confidence,
                     model_name="gemini-2.0-flash",
                     processing_time=processing_time,
-                    reasoning="Ultimate Gemini with 90%+ accuracy optimization"
+                    reasoning="Optimized Gemini with enhanced prompt engineering"
                 )
             else:
                 return AIResponse("No response generated", 0.0, "gemini-2.0-flash", processing_time, "Empty response")
@@ -237,101 +161,66 @@ class OptimizedGeminiProcessor:
             logger.error(f"Gemini error: {e}")
             return AIResponse(f"Error: {str(e)[:100]}", 0.0, "gemini-2.0-flash", time.time() - start_time, f"Error: {e}")
     
-    def _calculate_enhanced_confidence(self, answer: str, prompt: str) -> float:
-        """Ultimate confidence calculation for maximum 90%+ accuracy"""
+    def _calculate_confidence(self, answer: str, prompt: str) -> float:
+        """Enhanced confidence calculation"""
         if not answer or "error" in answer.lower():
             return 0.0
         
-        # Check for non-informative responses
-        if any(phrase in answer.lower() for phrase in [
-            'not provided', 'not mentioned', 'cannot find', 'insufficient information', 
-            'no information', 'document does not specify'
-        ]):
-            return 0.2
+        answer_lower = answer.lower()
         
-        confidence = 0.85  # High base confidence for ultimate version
-        
-        # ULTIMATE boost for competition format patterns
-        ultimate_patterns = [
-            # Grace period patterns
-            (r'grace period of (thirty|30) days.*premium payment.*due date.*renew.*continue.*policy.*continuity benefits', 0.15),
-            (r'grace period of \d+ days.*premium payment', 0.12),
-            
-            # PED waiting period patterns  
-            (r'waiting period of (thirty-six|36) \(?\d*\)? months.*continuous coverage.*first policy inception.*pre-existing diseases.*direct complications', 0.15),
-            (r'36.*months.*continuous.*coverage.*pre-existing', 0.12),
-            
-            # Maternity patterns
-            (r'policy covers maternity expenses.*childbirth.*lawful medical termination.*pregnancy.*female insured person.*continuously covered.*(24|twenty-four) months.*limited.*(two|2) deliveries.*terminations.*policy period', 0.15),
-            (r'maternity.*childbirth.*24 months.*continuously covered.*two deliveries', 0.12),
-            
-            # Health checkup patterns
-            (r'policy reimburses.*health check-ups.*end.*every.*block.*(two|2) continuous policy years.*renewed without.*break.*table of benefits', 0.15),
-            (r'health check.*two.*continuous.*policy years.*renewed without break', 0.12),
-            
-            # Cataract patterns
-            (r'specific waiting period.*(two|2) \(?\d*\)? years.*cataract surgery', 0.12),
-            
-            # Organ donor patterns
-            (r'policy indemnifies.*medical expenses.*organ donor.*hospitalization.*harvesting.*organ.*insured person.*transplantation of human organs act.*1994', 0.15),
-            
-            # NCD patterns
-            (r'no claim discount.*\d+%.*base premium.*renewal.*one-year policy term.*no claims.*preceding year.*maximum aggregate.*capped.*\d+%.*total base premium', 0.15),
-            
-            # Hospital definition patterns
-            (r'hospital.*defined.*institution.*\d+.*inpatient beds.*towns.*population.*\d+.*lakhs.*\d+.*beds.*other places.*qualified nursing staff.*medical practitioners.*24/7.*operation theatre.*daily records', 0.15),
-            
-            # AYUSH patterns
-            (r'covers.*medical expenses.*inpatient treatment.*ayurveda.*yoga.*naturopathy.*unani.*siddha.*homeopathy.*systems.*sum insured limit.*ayush hospital', 0.15),
-            
-            # Room rent patterns
-            (r'plan a.*daily room rent.*capped.*\d+%.*sum insured.*icu charges.*capped.*\d+%.*sum insured.*limits.*not apply.*preferred provider network.*ppn', 0.15),
+        # Check for uncertainty indicators
+        uncertainty_phrases = [
+            'not provided', 'not mentioned', 'cannot find', 'insufficient information',
+            'no information', 'document does not specify', 'unclear', 'not stated',
+            'may be', 'might be', 'possibly', 'appears to', 'seems to'
         ]
         
-        # Apply ultimate pattern matching
-        answer_lower = answer.lower()
-        for pattern, boost in ultimate_patterns:
+        if any(phrase in answer_lower for phrase in uncertainty_phrases):
+            if 'document does not specify' in answer_lower:
+                return 0.6  # Higher confidence for explicit acknowledgment
+            return 0.3
+        
+        confidence = 0.7  # Base confidence
+        
+        # Boost for specific information patterns
+        specific_patterns = [
+            (r'grace period of \d+ days', 0.2),
+            (r'waiting period of \d+ (?:months?|years?)', 0.2),
+            (r'continuously covered for (?:at least )?\d+ months?', 0.15),
+            (r'sum insured (?:of )?₹[\d,]+', 0.1),
+            (r'limited to \d+ deliveries?', 0.1),
+            (r'₹[\d,]+ (?:per|each)', 0.1),
+            (r'as per (?:section|clause|table)', 0.1),
+            (r'provided (?:that|the)', 0.05)
+        ]
+        
+        for pattern, boost in specific_patterns:
             if re.search(pattern, answer_lower):
                 confidence += boost
-                break
         
-        # Ultimate boost for specific insurance information
-        if re.search(r'\d+\s*(?:days?|months?|years?)', answer):  # Contains time periods
-            confidence += 0.12
-        
-        if re.search(r'₹[\d,]+|rs\.?\s*[\d,]+', answer.lower()):  # Contains amounts
-            confidence += 0.08
-        
-        # Ultimate boost for comprehensive insurance terminology
-        ultimate_terms = [
-            'continuously covered', 'policy inception', 'direct complications',
-            'lawful medical termination', 'table of benefits', 'sum insured limit',
-            'preferred provider network', 'transplantation of human organs act',
-            'qualified nursing staff', 'operation theatre', 'daily records',
-            'base premium', 'aggregate', 'capped', 'inpatient beds'
+        # Boost for definitive language
+        definitive_phrases = [
+            'the policy covers', 'the policy excludes', 'the grace period is',
+            'waiting period is', 'benefit is limited to', 'as specified in'
         ]
         
-        term_matches = sum(1 for term in ultimate_terms if term in answer_lower)
-        confidence += min(term_matches * 0.03, 0.15)
+        for phrase in definitive_phrases:
+            if phrase in answer_lower:
+                confidence += 0.08
+                break
         
-        # Boost for definitive statements (critical for competition)
-        if any(phrase in answer_lower for phrase in [
-            'the grace period is', 'waiting period is', 'policy covers', 
-            'policy indemnifies', 'policy reimburses', 'hospital is defined',
-            'yes, the policy', 'no claim discount of'
-        ]):
-            confidence += 0.1
-        
-        # Ultimate boost for comprehensive answers
-        if len(answer) > 100:
-            confidence += 0.08
-        elif len(answer) > 50:
+        # Boost for structured answers
+        if len(answer) > 50 and any(char in answer for char in ['.', ',']):
             confidence += 0.05
         
-        return min(confidence, 1.0)
+        # Penalty for very short answers (unless it's a clear "No" or "Yes")
+        if len(answer) < 30 and not any(word in answer_lower for word in ['yes', 'no', 'not covered', 'excluded']):
+            confidence -= 0.1
+        
+        return min(max(confidence, 0.0), 1.0)
 
 class OptimizedGroqProcessor:
-    """Maximum accuracy Groq processor"""
+    """Enhanced Groq processor with improved accuracy"""
     
     def __init__(self, api_key: str):
         self.client = Groq(api_key=api_key)
@@ -340,15 +229,13 @@ class OptimizedGroqProcessor:
         start_time = time.time()
         
         try:
-            # The prompt already contains the ultimate master prompt, so use it directly
-            # Split the prompt into system and user parts for better Groq performance
-            prompt_lines = prompt.split('\n\n')
-            system_content = prompt_lines[0] if prompt_lines else prompt
-            user_content = '\n\n'.join(prompt_lines[1:]) if len(prompt_lines) > 1 else ""
+            # Split prompt for better Groq performance
+            system_content = OptimizedInsurancePrompts.SYSTEM_PROMPT
+            user_content = prompt.replace(OptimizedInsurancePrompts.SYSTEM_PROMPT, "").strip()
             
             messages = [
                 {"role": "system", "content": system_content},
-                {"role": "user", "content": user_content if user_content else prompt}
+                {"role": "user", "content": user_content}
             ]
             
             response = await asyncio.to_thread(
@@ -359,72 +246,72 @@ class OptimizedGroqProcessor:
             
             if response and response.choices:
                 answer = response.choices[0].message.content.strip()
-                confidence = self._calculate_enhanced_confidence(answer, prompt)
+                confidence = self._calculate_confidence(answer, prompt)
                 
                 return AIResponse(
                     answer=answer,
                     confidence=confidence,
-                    model_name="llama-3.3-70b-versatile-ultimate",
+                    model_name="llama-3.3-70b-versatile",
                     processing_time=processing_time,
-                    reasoning="Ultimate Groq with 90%+ accuracy optimization"
+                    reasoning="Optimized Groq with enhanced system prompts"
                 )
             else:
-                return AIResponse("No response generated", 0.0, "llama-3.3-70b-versatile-ultimate", processing_time, "Empty response")
+                return AIResponse("No response generated", 0.0, "llama-3.3-70b-versatile", processing_time, "Empty response")
                 
         except Exception as e:
             logger.error(f"Groq error: {e}")
-            return AIResponse(f"Error: {str(e)[:100]}", 0.0, "llama-3.3-70b-versatile-ultimate", time.time() - start_time, f"Error: {e}")
+            return AIResponse(f"Error: {str(e)[:100]}", 0.0, "llama-3.3-70b-versatile", time.time() - start_time, f"Error: {e}")
     
     def _create_completion(self, messages):
         return self.client.chat.completions.create(
             model="llama-3.3-70b-versatile",
             messages=messages,
-            temperature=0.0,  # Maximum accuracy
-            max_tokens=500
+            temperature=0.1,
+            max_tokens=800
         )
     
-    def _calculate_enhanced_confidence(self, answer: str, prompt: str) -> float:
-        """Ultimate confidence calculation for Groq responses"""
+    def _calculate_confidence(self, answer: str, prompt: str) -> float:
+        """Enhanced confidence calculation for Groq"""
         if not answer or "error" in answer.lower():
             return 0.0
         
-        if any(phrase in answer.lower() for phrase in [
+        answer_lower = answer.lower()
+        
+        # Check for uncertainty
+        if any(phrase in answer_lower for phrase in [
             'not provided', 'not mentioned', 'cannot find', 'insufficient information',
             'document does not specify'
         ]):
-            return 0.2
+            if 'document does not specify' in answer_lower:
+                return 0.65  # Higher for explicit acknowledgment
+            return 0.25
         
-        confidence = 0.8  # High base confidence for ultimate version
+        confidence = 0.65  # Base confidence for Groq
         
-        # Ultimate boost for competition format patterns (simplified for Groq)
-        answer_lower = answer.lower()
-        
-        # Check for key competition phrases
-        competition_phrases = [
-            'grace period of', 'waiting period of', 'policy covers', 'policy indemnifies',
-            'policy reimburses', 'hospital is defined', 'continuously covered',
-            'sum insured', 'base premium', 'table of benefits'
+        # Boost for insurance-specific content
+        insurance_terms = [
+            'policy', 'coverage', 'premium', 'deductible', 'claim',
+            'beneficiary', 'exclusion', 'waiting period', 'grace period'
         ]
         
-        phrase_matches = sum(1 for phrase in competition_phrases if phrase in answer_lower)
-        confidence += min(phrase_matches * 0.05, 0.15)
+        term_count = sum(1 for term in insurance_terms if term in answer_lower)
+        confidence += min(term_count * 0.03, 0.15)
         
-        # Boost for specific information
+        # Boost for numerical information
         if re.search(r'\d+\s*(?:days?|months?|years?)', answer):
-            confidence += 0.12
+            confidence += 0.15
         
-        if any(term in answer_lower for term in [
-            'covered', 'excluded', 'waiting period', 'grace period', 'benefit'
-        ]):
+        if re.search(r'₹[\d,]+', answer):
             confidence += 0.1
         
-        if len(answer) > 80:  # Substantial answer
+        # Boost for structured response
+        if len(answer) > 40:
             confidence += 0.08
         
-        return min(confidence, 1.0)
+        return min(max(confidence, 0.0), 1.0)
 
-class ChampionshipAIProcessor:
-    """ULTIMATE CHAMPIONSHIP-GRADE AI Processor for 90%+ Accuracy Competition Victory"""
+class EnhancedAIProcessor:
+    """Enhanced AI Processor with improved accuracy algorithms"""
     
     def __init__(self):
         self.gemini = OptimizedGeminiProcessor(settings.GEMINI_API_KEY)
@@ -432,76 +319,161 @@ class ChampionshipAIProcessor:
         self.document_chunks = []
         self.document_indexed = False
         
-        # Enhanced context patterns for better relevance
-        self.context_patterns = {
-            'grace_period': [r'grace\s+period', r'premium.*payment', r'due\s+date', r'\d+\s*days?.*premium'],
-            'waiting_period': [r'waiting\s+period', r'pre[-\s]existing', r'PED', r'\d+\s*months?.*waiting'],
-            'maternity': [r'maternity', r'pregnancy', r'childbirth', r'\d+\s*months?.*maternity'],
-            'coverage': [r'covered', r'benefits?', r'expenses?', r'sum\s+insured'],
-            'exclusions': [r'excluded?', r'not\s+covered', r'shall\s+not', r'except']
+        # Enhanced keyword patterns for better context selection
+        self.enhanced_patterns = {
+            'grace_period': [
+                r'grace\s+period', r'premium.*due', r'payment.*deadline',
+                r'\d+\s*days?.*grace', r'continuity.*benefits', r'late.*payment'
+            ],
+            'waiting_period': [
+                r'waiting\s+period', r'pre[-\s]?existing', r'PED', r'continuous.*coverage',
+                r'\d+\s*months?.*waiting', r'policy.*inception', r'first.*policy'
+            ],
+            'maternity': [
+                r'maternity', r'pregnancy', r'childbirth', r'delivery',
+                r'termination.*pregnancy', r'female.*insured', r'continuously.*covered.*months'
+            ],
+            'coverage': [
+                r'covered', r'benefits?', r'sum.*insured', r'expenses?',
+                r'reimburs', r'indemnif', r'eligible', r'include'
+            ],
+            'exclusions': [
+                r'exclud', r'not.*covered?', r'except', r'shall.*not',
+                r'limitation', r'restriction', r'not.*eligible'
+            ]
         }
     
     async def initialize_document(self, document_text: str) -> bool:
-        """Initialize document with enhanced processing"""
+        """Enhanced document initialization"""
         try:
-            logger.info("🔄 Initializing document for ULTIMATE 90%+ accuracy processing...")
+            logger.info("🔄 Initializing document with enhanced processing...")
             
-            # Enhanced chunking for insurance documents
-            self.document_chunks = self._create_enhanced_chunks(document_text)
+            # Create smart chunks with overlap
+            self.document_chunks = self._create_smart_chunks(document_text)
             self.document_indexed = True
             
-            logger.info(f"✅ Document initialized with {len(self.document_chunks)} ultimate chunks")
+            logger.info(f"✅ Document initialized with {len(self.document_chunks)} smart chunks")
             return True
             
         except Exception as e:
             logger.error(f"❌ Document initialization failed: {e}")
             return False
     
-    def _create_enhanced_chunks(self, text: str) -> List[str]:
-        """Create enhanced chunks optimized for insurance queries"""
+    def _create_smart_chunks(self, text: str) -> List[Dict[str, Any]]:
+        """Create intelligent chunks with metadata"""
         # Normalize text
-        text = re.sub(r'\s+', ' ', text)
+        text = re.sub(r'\s+', ' ', text.strip())
         
-        # Split by sections first
-        sections = re.split(r'\n\s*(?:#{2,}|[A-Z\s]{5,}:|\d+\.\s*[A-Z])', text)
+        # Split by logical sections
+        section_patterns = [
+            r'\n\s*(?:section|clause|article)\s*\d+',
+            r'\n\s*[A-Z\s]{10,}:',
+            r'\n\s*\d+\.\s*[A-Z]',
+            r'\n\s*[IVX]+\.\s*[A-Z]'
+        ]
+        
+        sections = [text]  # Start with full text
+        for pattern in section_patterns:
+            new_sections = []
+            for section in sections:
+                parts = re.split(pattern, section, flags=re.IGNORECASE)
+                new_sections.extend([part.strip() for part in parts if len(part.strip()) > 100])
+            if new_sections:
+                sections = new_sections
         
         chunks = []
-        for section in sections:
-            if len(section.strip()) < 50:
-                continue
-                
-            words = section.split()
-            if len(words) <= 400:
-                chunks.append(section.strip())
+        for i, section in enumerate(sections):
+            if len(section) <= 1000:
+                # Small section - keep as is
+                chunk_data = {
+                    'text': section,
+                    'index': i,
+                    'keywords': self._extract_keywords(section),
+                    'type': self._classify_section(section)
+                }
+                chunks.append(chunk_data)
             else:
-                # Split long sections
-                for i in range(0, len(words), 300):
-                    chunk_words = words[max(0, i-50):i+400]  # Add overlap
-                    chunk = ' '.join(chunk_words)
-                    if len(chunk.strip()) > 50:
-                        chunks.append(chunk.strip())
+                # Large section - split with overlap
+                words = section.split()
+                for j in range(0, len(words), 300):
+                    chunk_words = words[max(0, j-50):j+400]  # 50 word overlap
+                    chunk_text = ' '.join(chunk_words)
+                    
+                    if len(chunk_text.strip()) > 100:
+                        chunk_data = {
+                            'text': chunk_text,
+                            'index': f"{i}_{j//300}",
+                            'keywords': self._extract_keywords(chunk_text),
+                            'type': self._classify_section(chunk_text)
+                        }
+                        chunks.append(chunk_data)
         
         return chunks
     
+    def _extract_keywords(self, text: str) -> List[str]:
+        """Extract relevant keywords from text"""
+        text_lower = text.lower()
+        keywords = []
+        
+        # Insurance-specific terms
+        insurance_terms = [
+            'grace period', 'waiting period', 'pre-existing', 'maternity',
+            'coverage', 'exclusion', 'benefit', 'premium', 'deductible',
+            'claim', 'hospital', 'treatment', 'surgery', 'diagnosis'
+        ]
+        
+        for term in insurance_terms:
+            if term in text_lower:
+                keywords.append(term)
+        
+        # Extract numbers with units
+        number_patterns = [
+            r'\d+\s*days?', r'\d+\s*months?', r'\d+\s*years?',
+            r'₹[\d,]+', r'\d+%', r'\d+\s*lakhs?'
+        ]
+        
+        for pattern in number_patterns:
+            matches = re.findall(pattern, text_lower)
+            keywords.extend(matches)
+        
+        return list(set(keywords))
+    
+    def _classify_section(self, text: str) -> str:
+        """Classify section type"""
+        text_lower = text.lower()
+        
+        if any(term in text_lower for term in ['definition', 'meaning', 'means']):
+            return 'definitions'
+        elif any(term in text_lower for term in ['exclusion', 'not covered', 'except']):
+            return 'exclusions'
+        elif any(term in text_lower for term in ['benefit', 'coverage', 'covered']):
+            return 'benefits'
+        elif any(term in text_lower for term in ['waiting period', 'grace period']):
+            return 'periods'
+        elif any(term in text_lower for term in ['claim', 'procedure', 'process']):
+            return 'claims'
+        else:
+            return 'general'
+    
     async def process_query(self, document: str, query: str) -> Tuple[str, float]:
-        """CHAMPIONSHIP QUERY PROCESSING - Maximum Accuracy"""
+        """Enhanced query processing with improved accuracy"""
         try:
             if not self.document_indexed:
                 success = await self.initialize_document(document)
                 if not success:
                     return "Failed to process document", 0.0
             
-            # Get highly relevant context using enhanced patterns
-            context = self._get_enhanced_context(query)
+            # Get highly relevant context
+            context = self._get_smart_context(query)
             
             if not context:
-                return "No relevant information found in the document", 0.1
+                return "No relevant information found in the document", 0.15
             
             # Generate optimized prompt
-            prompt = InsuranceMasterPrompts.get_enhanced_prompt(query, context)
+            prompt = OptimizedInsurancePrompts.get_optimized_prompt(query, context)
             
-            # Process with both models for maximum accuracy
-            logger.info(f"🏆 Processing query with ULTIMATE dual AI models for 90%+ accuracy")
+            # Process with both models
+            logger.info(f"🔍 Processing query with enhanced dual AI models")
             
             gemini_task = self.gemini.process_query(prompt)
             groq_task = self.groq.process_query(prompt)
@@ -510,74 +482,93 @@ class ChampionshipAIProcessor:
                 gemini_task, groq_task, return_exceptions=True
             )
             
-            # Apply championship consensus
-            final_answer, final_confidence = self._championship_consensus(
+            # Enhanced consensus
+            final_answer, final_confidence = self._enhanced_consensus(
                 gemini_response, groq_response, query
             )
             
-            logger.info(f"✅ ULTIMATE processing complete: confidence={final_confidence:.2f}")
+            logger.info(f"✅ Enhanced processing complete: confidence={final_confidence:.3f}")
             return final_answer, final_confidence
             
         except Exception as e:
-            logger.error(f"❌ Championship processing failed: {e}")
+            logger.error(f"❌ Enhanced processing failed: {e}")
             return f"Processing error: {str(e)[:100]}", 0.0
     
-    def _get_enhanced_context(self, query: str) -> str:
-        """Get most relevant context using enhanced pattern matching"""
+    def _get_smart_context(self, query: str) -> str:
+        """Get highly relevant context using smart matching"""
         if not self.document_chunks:
             return ""
         
         query_lower = query.lower()
         
-        # Determine query type and get relevant patterns
-        relevant_patterns = []
-        for category, patterns in self.context_patterns.items():
-            if any(term in query_lower for term in category.split('_')):
-                relevant_patterns.extend(patterns)
+        # Determine query category
+        query_category = 'general'
+        for category, patterns in self.enhanced_patterns.items():
+            if any(re.search(pattern, query_lower) for pattern in patterns):
+                query_category = category
+                break
         
-        # Score chunks by relevance
+        # Score chunks
         chunk_scores = []
-        for i, chunk in enumerate(self.document_chunks):
-            chunk_lower = chunk.lower()
+        for chunk in self.document_chunks:
             score = 0
+            chunk_text_lower = chunk['text'].lower()
             
-            # Pattern matching score
-            for pattern in relevant_patterns:
-                matches = len(re.findall(pattern, chunk_lower, re.IGNORECASE))
-                score += matches * 3
+            # Category-specific pattern matching
+            if query_category in self.enhanced_patterns:
+                for pattern in self.enhanced_patterns[query_category]:
+                    matches = len(re.findall(pattern, chunk_text_lower))
+                    score += matches * 10
             
-            # Query word matching
-            query_words = query_lower.split()
+            # Keyword matching from extracted keywords
+            query_words = set(query_lower.split())
+            chunk_keywords = set([kw.lower() for kw in chunk.get('keywords', [])])
+            keyword_overlap = len(query_words.intersection(chunk_keywords))
+            score += keyword_overlap * 5
+            
+            # Section type relevance
+            section_type = chunk.get('type', 'general')
+            type_boosts = {
+                'periods': ['grace', 'waiting', 'period'],
+                'benefits': ['cover', 'benefit', 'include'],
+                'exclusions': ['exclude', 'not cover', 'except'],
+                'definitions': ['define', 'meaning', 'means']
+            }
+            
+            for boost_type, boost_words in type_boosts.items():
+                if section_type == boost_type and any(word in query_lower for word in boost_words):
+                    score += 15
+            
+            # Word frequency matching
             for word in query_words:
-                if len(word) > 3:  # Skip short words
-                    score += chunk_lower.count(word.lower())
+                if len(word) > 3:
+                    score += chunk_text_lower.count(word) * 2
             
-            # Boost for insurance keywords
-            insurance_keywords = ['grace', 'waiting', 'period', 'covered', 'excluded', 'benefit', 'premium']
-            for keyword in insurance_keywords:
-                if keyword in chunk_lower:
-                    score += 2
-            
-            chunk_scores.append((chunk, score, i))
+            chunk_scores.append((chunk, score))
         
-        # Get top chunks
+        # Select top chunks
         chunk_scores.sort(key=lambda x: x[1], reverse=True)
-        top_chunks = [chunk for chunk, score, idx in chunk_scores[:3] if score > 0]
+        selected_chunks = [chunk for chunk, score in chunk_scores[:4] if score > 0]
         
-        if not top_chunks:
-            # Fallback to first few chunks
-            return "\n\n".join(self.document_chunks[:2])
+        if not selected_chunks:
+            # Fallback to first chunks
+            selected_chunks = self.document_chunks[:3]
         
-        context = "\n\n---\n\n".join(top_chunks)
+        # Combine context
+        context_parts = []
+        for chunk in selected_chunks:
+            context_parts.append(f"[Section {chunk['index']}]\n{chunk['text']}")
+        
+        context = "\n\n---\n\n".join(context_parts)
         
         # Limit context size
-        if len(context) > 6000:
-            context = context[:6000] + "..."
+        if len(context) > 8000:
+            context = context[:8000] + "\n\n[Context truncated for length]"
         
         return context
     
-    def _championship_consensus(self, gemini_response, groq_response, query: str) -> Tuple[str, float]:
-        """CHAMPIONSHIP consensus for maximum accuracy"""
+    def _enhanced_consensus(self, gemini_response, groq_response, query: str) -> Tuple[str, float]:
+        """Enhanced consensus algorithm"""
         valid_responses = []
         
         if isinstance(gemini_response, AIResponse) and gemini_response.confidence > 0:
@@ -587,76 +578,137 @@ class ChampionshipAIProcessor:
             valid_responses.append(groq_response)
         
         if not valid_responses:
-            return "Unable to generate accurate answer", 0.0
+            return "Unable to generate accurate answer from the provided document", 0.0
         
         if len(valid_responses) == 1:
-            return valid_responses[0].answer, valid_responses[0].confidence
+            response = valid_responses[0]
+            return response.answer, response.confidence
         
-        # Choose the response with higher confidence and better content
-        best_response = max(valid_responses, key=lambda r: (
-            r.confidence,
-            len(r.answer),
-            self._has_specific_info(r.answer, query)
-        ))
+        # Enhanced dual response analysis
+        gemini_resp = valid_responses[0] if valid_responses[0].model_name.startswith('gemini') else valid_responses[1]
+        groq_resp = valid_responses[1] if valid_responses[0].model_name.startswith('gemini') else valid_responses[0]
         
-        # Boost confidence if both models agree on key facts
-        if len(valid_responses) == 2:
-            if self._responses_agree(valid_responses[0].answer, valid_responses[1].answer):
-                boosted_confidence = min(best_response.confidence + 0.2, 1.0)
-                logger.info(f"🎯 CHAMPIONSHIP consensus boost: {best_response.confidence:.2f} → {boosted_confidence:.2f}")
-                return best_response.answer, boosted_confidence
+        # Check for agreement indicators
+        agreement_score = self._calculate_agreement(gemini_resp.answer, groq_resp.answer)
         
-        return best_response.answer, best_response.confidence
+        logger.info(f"Agreement score: {agreement_score:.3f}")
+        
+        # Select best response based on multiple factors
+        gemini_score = self._calculate_response_quality(gemini_resp.answer, gemini_resp.confidence, query)
+        groq_score = self._calculate_response_quality(groq_resp.answer, groq_resp.confidence, query)
+        
+        if agreement_score > 0.6:
+            # High agreement - boost confidence and select better response
+            if gemini_score >= groq_score:
+                final_confidence = min(gemini_resp.confidence + 0.15, 1.0)
+                return gemini_resp.answer, final_confidence
+            else:
+                final_confidence = min(groq_resp.confidence + 0.15, 1.0)
+                return groq_resp.answer, final_confidence
+        
+        elif gemini_score > groq_score * 1.2:
+            # Gemini significantly better
+            return gemini_resp.answer, gemini_resp.confidence
+        
+        elif groq_score > gemini_score * 1.2:
+            # Groq significantly better
+            return groq_resp.answer, groq_resp.confidence
+        
+        else:
+            # Close call - select based on confidence with slight preference for more detailed answer
+            if abs(gemini_resp.confidence - groq_resp.confidence) < 0.1:
+                # Similar confidence - prefer longer, more detailed answer
+                if len(gemini_resp.answer) > len(groq_resp.answer):
+                    return gemini_resp.answer, gemini_resp.confidence
+                else:
+                    return groq_resp.answer, groq_resp.confidence
+            else:
+                # Different confidence - select higher confidence
+                if gemini_resp.confidence > groq_resp.confidence:
+                    return gemini_resp.answer, gemini_resp.confidence
+                else:
+                    return groq_resp.answer, groq_resp.confidence
     
-    def _has_specific_info(self, answer: str, query: str) -> float:
-        """Check if answer has specific insurance information"""
-        score = 0
-        answer_lower = answer.lower()
+    def _calculate_agreement(self, answer1: str, answer2: str) -> float:
+        """Calculate agreement between two answers"""
+        # Extract key information
+        numbers1 = set(re.findall(r'\d+', answer1))
+        numbers2 = set(re.findall(r'\d+', answer2))
         
-        # Check for numbers (crucial for insurance)
-        if re.search(r'\d+\s*(?:days?|months?|years?)', answer_lower):
-            score += 5
-        
-        if re.search(r'₹[\d,]+', answer_lower):
-            score += 3
-        
-        # Check for definitive statements
-        definitive_phrases = [
-            'the grace period is', 'waiting period is', 'coverage includes',
-            'excluded are', 'benefit is', 'premium must be paid'
-        ]
-        
-        for phrase in definitive_phrases:
-            if phrase in answer_lower:
-                score += 3
-        
-        return score
-    
-    def _responses_agree(self, answer1: str, answer2: str) -> bool:
-        """Check if two responses agree on key facts"""
-        # Extract numbers from both answers
-        numbers1 = re.findall(r'\d+', answer1)
-        numbers2 = re.findall(r'\d+', answer2)
-        
-        # If both have numbers, check if they match
+        # Number agreement
+        number_agreement = 0
         if numbers1 and numbers2:
-            return any(num in numbers2 for num in numbers1)
+            common_numbers = numbers1.intersection(numbers2)
+            total_numbers = numbers1.union(numbers2)
+            number_agreement = len(common_numbers) / len(total_numbers) if total_numbers else 0
         
-        # Check for common key phrases
+        # Word overlap
+        words1 = set(answer1.lower().split())
+        words2 = set(answer2.lower().split())
+        
+        # Filter out common words
+        common_words = {'the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for', 'of', 'with', 'by', 'is', 'are', 'was', 'were'}
+        words1 = words1 - common_words
+        words2 = words2 - common_words
+        
+        if words1 and words2:
+            word_overlap = len(words1.intersection(words2)) / len(words1.union(words2))
+        else:
+            word_overlap = 0
+        
+        # Key phrase agreement
         key_phrases = [
-            'grace period', 'waiting period', 'covered', 'excluded',
-            'days', 'months', 'years', 'benefit', 'premium'
+            'grace period', 'waiting period', 'covered', 'excluded', 'not covered',
+            'premium', 'benefit', 'sum insured', 'conditions', 'limitations'
         ]
         
-        answer1_lower = answer1.lower()
-        answer2_lower = answer2.lower()
-        
+        phrase_agreement = 0
         common_phrases = 0
         for phrase in key_phrases:
-            if phrase in answer1_lower and phrase in answer2_lower:
+            if phrase in answer1.lower() and phrase in answer2.lower():
                 common_phrases += 1
         
-        return common_phrases >= 2
+        if common_phrases > 0:
+            phrase_agreement = common_phrases / len([p for p in key_phrases if p in answer1.lower() or p in answer2.lower()])
+        
+        # Combine scores
+        final_agreement = (number_agreement * 0.4 + word_overlap * 0.4 + phrase_agreement * 0.2)
+        return final_agreement
+    
+    def _calculate_response_quality(self, answer: str, confidence: float, query: str) -> float:
+        """Calculate overall response quality score"""
+        answer_lower = answer.lower()
+        
+        # Base score from confidence
+        score = confidence
+        
+        # Penalize non-informative responses
+        if any(phrase in answer_lower for phrase in [
+            'not provided', 'not mentioned', 'cannot find', 'insufficient information'
+        ]):
+            if 'document does not specify' in answer_lower:
+                score *= 0.8  # Less penalty for explicit acknowledgment
+            else:
+                score *= 0.4
+        
+        # Boost for specific information
+        if re.search(r'\d+\s*(?:days?|months?|years?)', answer):
+            score += 0.1
+        
+        if re.search(r'₹[\d,]+', answer):
+            score += 0.05
+        
+        # Boost for query relevance
+        query_words = set(query.lower().split())
+        answer_words = set(answer_lower.split())
+        relevance = len(query_words.intersection(answer_words)) / len(query_words) if query_words else 0
+        score += relevance * 0.1
+        
+        # Boost for comprehensive answers
+        if len(answer) > 100:
+            score += 0.05
+        
+        return min(score, 1.0)
     
     def get_processing_stats(self) -> Dict[str, Any]:
         return {
@@ -666,12 +718,12 @@ class ChampionshipAIProcessor:
                 "gemini": bool(settings.GEMINI_API_KEY),
                 "groq": bool(settings.GROQ_API_KEY)
             },
-            "optimization_level": "ULTIMATE_CHAMPIONSHIP_90_PERCENT"
+            "optimization_level": "ENHANCED_90_PERCENT_TARGET"
         }
 
-# Global instance for reuse
-championship_ai = ChampionshipAIProcessor()
+# Global instance
+enhanced_ai = EnhancedAIProcessor()
 
 async def process_query(document: str, query: str) -> Tuple[str, float]:
-    """Main function for ULTIMATE championship AI processing with 90%+ accuracy guarantee"""
-    return await championship_ai.process_query(document, query)
+    """Main function for enhanced AI processing with 90%+ accuracy target"""
+    return await enhanced_ai.process_query(document, query)

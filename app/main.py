@@ -17,7 +17,7 @@ from app.config import settings
 from app.models.schemas import HackRxRequest, HackRxResponse, HealthResponse
 
 # CHAMPIONSHIP IMPORTS
-from app.models.ai_processor import championship_ai
+from app.models.ai_processor import enhanced_ai  # Updated from championship_ai to enhanced_ai
 from app.services.document_processor import hyper_fast_processor
 from app.services.vector_store import lightning_vector_store
 
@@ -132,6 +132,15 @@ async def hackrx_run_championship(
             )
         
         logger.info(f"✅ Document ready: {len(document_text):,} chars in {doc_time:.1f}s")
+        
+        # Initialize document for enhanced_ai
+        logger.info("🔄 Initializing document for enhanced AI processing...")
+        success = await enhanced_ai.initialize_document(document_text)
+        if not success:
+            raise HTTPException(
+                status_code=500,
+                detail="Failed to initialize document for AI processing"
+            )
         
         # STEP 2: CHAMPIONSHIP vector indexing (max 2s)
         vector_start = time.time()
@@ -262,8 +271,8 @@ async def process_single_question_championship(question: str) -> str:
             # Keep the most relevant parts
             context = context[:12000] + "..."
         
-        # ENHANCED: Process with championship AI
-        answer, confidence = await championship_ai.process_query(context, question)
+        # ENHANCED: Process with enhanced AI
+        answer, confidence = await enhanced_ai.process_query(context, question)  # Updated from championship_ai
         
         # ENHANCED: Very low threshold for maximum coverage but ensure quality
         if confidence < 0.1:  # Very low threshold
@@ -279,6 +288,14 @@ async def process_single_question_championship(question: str) -> str:
         logger.error(f"❌ Single question processing failed: {e}")
         return "Unable to process this question due to a technical issue. Please refer to the complete policy document for detailed information."
 
+async def process_single_question_with_fallback(question: str, question_number: int) -> str:
+    """Process single question with fallback for parallel processing"""
+    try:
+        return await process_single_question_championship(question)
+    except Exception as e:
+        logger.error(f"❌ Q{question_number} failed in parallel processing: {e}")
+        return "Unable to find specific information for this question in the document. Please refer to the complete policy document for detailed information."
+
 @app.get("/health", response_model=HealthResponse)
 async def health_check():
     """Championship health check"""
@@ -292,10 +309,10 @@ async def health_check():
             version="15.0.0-CHAMPIONSHIP",
             environment=settings.ENVIRONMENT,
             ai_models_status={
-                "gemini_championship": True,
-                "groq_available": True,
-                "models_loaded": True,
-                "accuracy_optimization": "CHAMPIONSHIP",
+                "gemini_championship": bool(settings.GEMINI_API_KEY),  # Updated to check API key
+                "groq_available": bool(settings.GROQ_API_KEY),  # Updated to check API key
+                "models_loaded": enhanced_ai.get_processing_stats()['models_available']['gemini'] and enhanced_ai.get_processing_stats()['models_available']['groq'],
+                "accuracy_optimization": "ENHANCED_90_PERCENT_TARGET",  # Updated to match ai_processor
                 "processing_method": "CHAMPIONSHIP",
                 "question_limit": "20 per request"
             },
@@ -326,7 +343,7 @@ async def get_championship_metrics():
             "average_response_time": round(avg_response_time, 2),
             "uptime_seconds": round(uptime, 2),
             "accuracy_target": "90%+",
-            "optimization_level": "CHAMPIONSHIP",
+            "optimization_level": "ENHANCED_90_PERCENT_TARGET",  # Updated to match ai_processor
             "cache_performance": {
                 "document_cache_size": len(document_cache),
                 "vector_cache_size": len(vector_cache)

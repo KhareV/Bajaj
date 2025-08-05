@@ -49,7 +49,7 @@ class UltimateComprehensiveTester:
     Tests across multiple domains, difficulty levels, and question types
     """
     
-    def __init__(self, base_url: str = "http://localhost:8000"):
+    def __init__(self, base_url: str = "http://localhost:8080"):
         self.base_url = base_url
         self.bearer_token = "fff018ce90c02cb0554e8968e827c7696a7304b28ba190b9cace6236579f7258"
         
@@ -1628,7 +1628,7 @@ def run_ultimate_comprehensive_test():
     
     print("🔧 CHECKING SERVER STATUS...")
     try:
-        response = requests.get("http://localhost:8000/health", timeout=10)
+        response = requests.get("http://localhost:8080/health", timeout=10)
         if response.status_code == 200:
             health_data = response.json()
             print(f"✅ Server Status: {health_data.get('status', 'unknown')}")
@@ -1725,7 +1725,7 @@ def run_quick_validation_test():
     try:
         start_time = time.time()
         response = requests.post(
-            "http://localhost:8000/hackrx/run",
+            "http://localhost:8080/hackrx/run",
             json=payload,
             headers=headers,
             timeout=60
