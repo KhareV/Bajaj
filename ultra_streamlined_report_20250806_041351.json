@@ -1,0 +1,106 @@
+{
+  "test_metadata": {
+    "user": "vkhare2909",
+    "timestamp": "2025-08-05 18:38:47 UTC",
+    "test_type": "ULTRA_STREAMLINED_COMPREHENSIVE",
+    "total_questions": 11,
+    "optimization_level": "MAXIMUM - 11 questions only",
+    "target_time": "< 5 minutes",
+    "coverage_efficiency": "95%+ with minimal questions"
+  },
+  "executive_summary": {
+    "test_type": "ULTRA_STREAMLINED_COMPREHENSIVE",
+    "optimization_level": "MAXIMUM",
+    "total_questions": 11,
+    "questions_efficiency": "11 questions for complete validation",
+    "time_efficiency": "< 5 minutes total execution",
+    "coverage_efficiency": "95%+ accuracy validation with minimal questions",
+    "completion_status": "COMPLETED",
+    "timestamp": "2025-08-05 18:38:47 UTC",
+    "user": "vkhare2909"
+  },
+  "ultra_results": {
+    "total_time": 211.24090909957886,
+    "total_time_minutes": 3.5206818183263144,
+    "avg_time_per_question": 19.203719009052623,
+    "weighted_accuracy": 0.5349693861693862,
+    "simple_accuracy": 0.47272727272727266,
+    "correct_count": 1,
+    "partial_count": 6,
+    "incorrect_count": 4,
+    "total_questions": 11,
+    "individual_scores": [
+      0.5650000000000001,
+      0.06266666666666668,
+      0.071,
+      0.057469696969696976,
+      0.6871428571428572,
+      0.6822222222222223,
+      0.6742857142857144,
+      0.75,
+      0.8125,
+      0.4683333333333333,
+      0.8888888888888888
+    ],
+    "difficulty_accuracy": {
+      "easy": 0.5650000000000001,
+      "medium": 0.39170158730158733,
+      "hard": 0.37230627705627706,
+      "expert": 0.8171296296296297
+    },
+    "question_type_accuracy": {
+      "factual": 0.2328888888888889,
+      "analytical": 0.6272146464646464,
+      "comparative": 0.5777380952380953,
+      "procedural": 0.6782539682539683
+    },
+    "category_accuracy": {
+      "basic_policy_info": 0.5650000000000001,
+      "hospital_definition_limits": 0.06266666666666668,
+      "waiting_periods_ncd": 0.071,
+      "maternity_ayush_coverage": 0.057469696969696976,
+      "health_checkup_network": 0.6871428571428572,
+      "claims_process": 0.6822222222222223,
+      "claim_intimation_renewal": 0.6742857142857144,
+      "donor_coverage_exclusions": 0.75,
+      "mental_health_copay": 0.8125,
+      "family_coverage_changes": 0.4683333333333333,
+      "sum_insured_international": 0.8888888888888888
+    },
+    "target_achievement": {
+      "speed": true,
+      "accuracy": false,
+      "combined": false
+    },
+    "status": "success"
+  },
+  "performance_metrics": {
+    "speed_score": 1.0,
+    "accuracy_score": 0.5349693861693862,
+    "efficiency_score": 0.5349693861693862,
+    "coverage_score": 1.0,
+    "consistency_score": 0.9018024390384136,
+    "overall_performance": 0.6928202229620216
+  },
+  "final_assessment": {
+    "weighted_accuracy": 0.5349693861693862,
+    "total_time": 211.24090909957886,
+    "overall_performance": 0.6928202229620216,
+    "final_grade": "C (<75%) \u274c NEEDS IMPROVEMENT",
+    "readiness_level": "\ud83d\udd27 OPTIMIZATION REQUIRED",
+    "target_achievement": {
+      "speed": true,
+      "accuracy": false,
+      "combined": false
+    },
+    "recommendations": [
+      "\u26a1 Great speed! Focus on accuracy improvements.",
+      "\ud83c\udfaf Review question handling for better precision."
+    ],
+    "championship_ready": false
+  },
+  "ultra_recommendations": [
+    "\ud83d\udd27 Significant accuracy improvements needed before deployment.",
+    "\u26a1 Good speed performance - meets target requirements."
+  ]
+}
